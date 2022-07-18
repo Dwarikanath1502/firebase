@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Header from './layout/Header'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
 
-function App() {
+} from "react-router-dom";
+import Home from './Components/Home';
+import SignIn from './Components/SignIn';
+import SignUp from './Components/SignUp';
+import { userContext } from './context/userContext'
+// firebase stuffs
+
+
+const App = () => {
+
+  const [user, setUser] = useState('user')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <userContext.Provider value={{user, setUser}}>
+        <Header />
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/signin' element={<SignIn />} />
+          <Route exact path='/signup' element={<SignUp />} />
+          <Route exact path='*' element={<SignUp />} />
+        </Routes>
+      </userContext.Provider>
+
+    </Router>
+  )
 }
 
-export default App;
+export default App
