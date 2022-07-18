@@ -12,15 +12,21 @@ import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
 import { userContext } from './context/userContext'
 // firebase stuffs
-
+import { firebaseConfig } from './config/config';
+import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
 
 const App = () => {
 
   const [user, setUser] = useState('user')
 
+  const app = initializeApp(firebaseConfig)
+  const auth = getAuth(app)
+
+
   return (
     <Router>
-      <userContext.Provider value={{user, setUser}}>
+      <userContext.Provider value={{ user, setUser }}>
         <Header />
         <Routes>
           <Route exact path='/' element={<Home />} />
