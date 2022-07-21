@@ -41,7 +41,7 @@ const SignIn = () => {
   } return (
     <Container>
       <Row className='justify-content-center mt-5'>
-        <Col lg={6}>
+        <Col lg={6} className="text-center">
           <img src={require('../Images/login.jpg')} alt='logo' height="80%" />
         </Col>
         <Col lg={6}>
