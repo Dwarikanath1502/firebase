@@ -42,34 +42,31 @@ const SignUp = () => {
             <Form onSubmit={handleSubmit}>
               <CardHeader className='text-center'>Sign Up Here!</CardHeader>
               <CardBody>
-                <Form  >
-                  <FormGroup>
-                    <Label for="email">Email</Label>
-                    <Col sm={9}>
-                      <Input
-                        type="email"
-                        name="email"
-                        id="email"
-                        placeholder="provide your email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                      />
-                    </Col>
-                  </FormGroup>
-
-                  <Label>Password</Label>
+                <FormGroup>
+                  <Label for="email">Email</Label>
                   <Col sm={9}>
                     <Input
-                      type="password"
-                      name="password"
-                      id="password"
-                      placeholder="password"
-                      value={password}
-                      onChange={e => { setPassword(e.target.value) }}
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="provide your email"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
                     />
                   </Col>
-                  <Button size='lg' color='success' className='mt-2 btn btn-block'>Sign Up</Button>
-                </Form>
+                </FormGroup>
+                <Label>Password</Label>
+                <Col sm={9}>
+                  <Input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="password"
+                    value={password}
+                    onChange={e => { setPassword(e.target.value) }}
+                  />
+                </Col>
+                <Button size='lg' color='success' className='mt-2 btn btn-block'>Sign Up</Button>
               </CardBody>
             </Form>
           </Card>
