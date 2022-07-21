@@ -2,10 +2,12 @@ import React, { useState, useContext } from 'react'
 import { Input, Form, Card, Row, Container, Col, CardHeader, CardBody, FormGroup, Label, Button } from 'reactstrap'
 import { userContext } from '../context/userContext';
 import { Navigate } from 'react-router-dom'
-import { createUserWithEmailAndPassword } from "firebase/auth";
 // firebase
 import auth from '../config/config'
-// import firebase from 'firebase/compat/app'
+import { createUserWithEmailAndPassword } from "firebase/auth";
+// toastify
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
   const context = useContext(userContext)
@@ -20,7 +22,12 @@ const SignUp = () => {
         console.log(res);
         context.setUser({ email: res.user.email, uid: res.user.uid })
       })
-      .catch((error) => { console.log(error) })
+      .catch((error) => {
+        console.log(error);
+        toast(error.message, {
+          type: "error",
+        });
+      });
   }
 
   const handleSubmit = (event) => {

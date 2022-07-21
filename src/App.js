@@ -10,6 +10,8 @@ import Home from './Components/Home';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
 import { userContext } from './context/userContext'
+import { ToastContainer } from 'react-toastify';
+
 
 
 
@@ -20,6 +22,7 @@ const App = () => {
 
   return (
     <Router>
+      <ToastContainer/>
       <userContext.Provider value={{ user, setUser }}>
         <Header />
         <Routes>
