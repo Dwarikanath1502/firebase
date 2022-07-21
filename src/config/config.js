@@ -1,9 +1,17 @@
-export const firebaseConfig = {
-    apiKey: "AIzaSyDDWrEG_oa0Gq1i0RwqMluPah8QshoqcOs",
-    authDomain: "keep-556d8.firebaseapp.com",
-    projectId: "keep-556d8",
-    storageBucket: "keep-556d8.appspot.com",
-    messagingSenderId: "13930591454",
-    appId: "1:13930591454:web:7375ed86714eaf9c02fe4f",
-    measurementId: "G-9S4KTGG8F3"
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyD3dSusJAP7uAHbxiTa-Vc_VhORg_tBfGc",
+    authDomain: "store-2bee9.firebaseapp.com",
+    projectId: "store-2bee9",
+    storageBucket: "store-2bee9.appspot.com",
+    messagingSenderId: "775571756886",
+    appId: "1:775571756886:web:f91b7641cabb17fada28f7",
+    measurementId: "G-5M1QG94H38"
 };
+
+const app = initializeApp(firebaseConfig)
+const auth = getAuth(app)
+
+export default auth

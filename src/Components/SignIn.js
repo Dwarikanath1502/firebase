@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {  Input, Form, Card, Row,  Container, Col, CardHeader, CardBody, FormGroup, Label, Button } from 'reactstrap'
 
 const SignIn = () => {
+
+// const [email, setEmail] = useState("")
+// const [password, setPassword] = useState("")
+
   return (
     <Container>
       <Row className='justify-content-center mt-5'>
