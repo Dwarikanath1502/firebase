@@ -16,7 +16,7 @@ import { userContext } from './context/userContext'
 
 const App = () => {
 
-  const [user, setUser] = useState('user')
+  const [user, setUser] = useState('')
 
   return (
     <Router>

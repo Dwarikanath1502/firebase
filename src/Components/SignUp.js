@@ -29,7 +29,7 @@ const SignUp = () => {
   }
 
   // IF USER FOUND NAVIGATE TO HOME 
-  if (context.user?.uid) {
+  if (context.user && context.user.uid) {
     return <Navigate to="/" />
   } return (
     <Container>
