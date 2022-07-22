@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD3dSusJAP7uAHbxiTa-Vc_VhORg_tBfGc",
@@ -11,6 +12,11 @@ const firebaseConfig = {
     measurementId: "G-5M1QG94H38"
 };
 
+// auth with google
+export const provider = new GoogleAuthProvider()
+// provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+// email password auth
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 

@@ -4,10 +4,11 @@ import { userContext } from '../context/userContext';
 import { Navigate } from 'react-router-dom'
 // firebase
 import auth from '../config/config'
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, getRedirectResult } from "firebase/auth";
+import { provider } from '../config/config';
 // toastify
 import { toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
   const context = useContext(userContext)
@@ -15,8 +16,9 @@ const SignUp = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+  // SIGNUP METHODS
+  // Signup with Email and Password
   const handleSignUp = () => {
-    // TODO: create firebase stuffs here
     createUserWithEmailAndPassword(auth, email, password)
       .then(res => {
         console.log(res);
@@ -29,7 +31,31 @@ const SignUp = () => {
         });
       });
   }
-
+  // Signup with GOOGLE
+  const handleSignupWithGoogle = () => {
+    getRedirectResult(auth)
+    signInWithPopup(auth, provider)
+    .then(result => {
+      const credential = GoogleAuthProvider.credentialFromResult(result)
+      const token = credential.accessToken
+      const user = result.user
+      context.setUser({user, token})
+ 
+    })
+    .catch((error) => {
+      console.log(error);
+      toast(error.message, {
+        type: "error",
+      });
+    });
+  }
+// HANDLE SUBMIT
+// Handle submit with google
+  const handleGoogle = (e) => {
+    e.preventDefault()
+    handleSignupWithGoogle()
+  }
+// Handle submit with email & password
   const handleSubmit = (event) => {
     event.preventDefault();
     handleSignUp();
@@ -51,29 +77,27 @@ const SignUp = () => {
               <CardBody>
                 <FormGroup>
                   <Label for="email">Email</Label>
-                  <Col sm={9}>
+                  <Col sm={12}>
                     <Input
                       type="email"
-                      name="email"
-                      id="email"
                       placeholder="provide your email"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                     />
                   </Col>
+                  <Label>Password</Label>
+                  <Col sm={12}>
+                    <Input
+                      type="password"
+                      placeholder="password"
+                      value={password}
+                      width="auto"
+                      onChange={e => { setPassword(e.target.value) }}
+                    />
+                  </Col>
+                  <Button color="success" size="lg" className='mt-3' block>Sign up</Button>
+                  <Button color="danger" size="lg" className='mt-3' block onClick={handleGoogle}>Sign up with Google</Button>
                 </FormGroup>
-                <Label>Password</Label>
-                <Col sm={9}>
-                  <Input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="password"
-                    value={password}
-                    onChange={e => { setPassword(e.target.value) }}
-                  />
-                </Col>
-                <Button size='lg' color='success' className='mt-2 btn btn-block'>Sign Up</Button>
               </CardBody>
             </Form>
           </Card>
