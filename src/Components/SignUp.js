@@ -40,7 +40,6 @@ const SignUp = () => {
       const token = credential.accessToken
       const user = result.user
       context.setUser({user, token})
- 
     })
     .catch((error) => {
       console.log(error);
@@ -49,6 +48,7 @@ const SignUp = () => {
       });
     });
   }
+
 // HANDLE SUBMIT
 // Handle submit with google
   const handleGoogle = (e) => {
@@ -64,7 +64,11 @@ const SignUp = () => {
   // IF USER FOUND NAVIGATE TO HOME 
   if (context.user && context.user.uid) {
     return <Navigate to="/" />
-  } return (
+  } 
+  if (context.user?.token) {
+    return<Navigate to ="/"/>
+  }
+  return (
     <Container>
       <Row className='justify-content-center mt-5'>
         <Col lg={6} className="text-center">
