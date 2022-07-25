@@ -57,7 +57,7 @@ const SignUp = () => {
   }
 // Handle submit with email & password
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
     handleSignUp();
   }
 
